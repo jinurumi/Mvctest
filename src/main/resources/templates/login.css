@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+body{
+    background-color : #F8EDE3;
+    text-align : center;
+    height : 100vh;
+    display : flex;
+    align-items : center;
+    justify-content: center;
+    }
+
+input{
+    margin-top : 10px;
+    margin-bottom : 10px;
+}
+
+button{
+    background-color : #D0B8A8;
+}
