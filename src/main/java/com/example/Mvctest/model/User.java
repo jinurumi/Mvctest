@@ -7,16 +7,26 @@ public class User {
     static private String id;
     static private Integer age;
 
-    public static void setId(String id) {
-        User.id = id;
+
+    //내부 회원생성함수
+    public void User(String id, Integer age) {
+        this.id =id;
+        this.age =age;
     }
-    public static String getId() {
+
+    public User(){}
+
+    //getter setter 함수
+    void setId(String id) {
+       this.id = id;
+    }
+    public String getId() {
         return id;
     }
-    public static void setAge(int age) {
-        User.age =age;
+    void setAge(Integer age) {
+        this.age =age;
     }
-    public static int getAge() {
+    public Integer getAge() {
         return age;
     }
 }
