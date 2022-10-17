@@ -10,8 +10,9 @@ public class LoginService {
 
 
     //User 배열 두개 생성
-    private static int usernum = 2;
+
     private static User user[] = new User[1];
+    public String nowlogin = "";
     public static void main(String[] args){
         for(int i=0;i<2;i++)
         { user[i] = new User();}
@@ -28,26 +29,30 @@ public class LoginService {
         String uid = sc.nextLine();
         Integer uage = sc.nextInt();
 
+
         //
 
         for(int i = 0 ; i < 2; i++)
         {
+
             if (user[i].getId().equals(uid) && user[i].getAge().equals(uage))
             {
-                //로그인 성공
+                nowlogin = "success";
 
-
-                return;
+                return ;
             }else if (!user[i].getId().equals(uid))
             {
-                //존재하지 않는 아이디
+                nowlogin = "ID error";
                 return;
             }
             else if (user[i].getId().equals(uid) && !user[i].getAge().equals(uage))
             {
-                //나이가 잘못되었음
+                nowlogin = "AGE error";
                 return;
             }
+            else {
+            }
+
         }
 
 

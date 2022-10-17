@@ -1,27 +1,27 @@
 package com.example.Mvctest.controller;
+import com.example.Mvctest.service.LoginService;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import java.util.*;
 
 @Controller
 public class WebController {
 
+
+
     //GetMapping으로 리다이렉트 기능만 수행
     @GetMapping("/index")
     public String indexView() {
-        //if 로그인 성공
-        //홈화면에 로그인한 사용자 이름 띄우기
+        if(nowlogin.equals("success")){
         return "redirect:/";
     }
 
     @GetMapping("/login")
     public String loginView() {
-        //if(없는 사용자면) {
-        //alert("없습니다") }
-        //else if (있는 사용자면) {
+
         return "redirect:/";
-        //}
+
     }
 
 
