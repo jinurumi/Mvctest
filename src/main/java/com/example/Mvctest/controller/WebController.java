@@ -13,7 +13,7 @@ public class WebController {
     //GetMapping으로 리다이렉트 기능만 수행
     @GetMapping("/index")
     public String indexView() {
-        if(nowlogin.equals("success")){
+        //if(nowlogin.equals("success")){
         return "redirect:/";
     }
 
