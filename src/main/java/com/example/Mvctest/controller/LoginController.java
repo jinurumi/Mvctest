@@ -1,17 +1,42 @@
 package com.example.Mvctest.controller;
-
-
+import com.example.Mvctest.model.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import static com.example.Mvctest.service.LoginService.result;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@RestController
+@RequestMapping("/")
 public class LoginController {
 
-    //전달받은 요청을 LoginService 로 전달하고 서비스에서 로직을 수행한다
-
     //API로 유저정보를 전달받음
+    @PostMapping("/login")
+    public User postMethod(@RequestBody User user) {
+        return user;
+    }
 
+
+
+    //login 페이지에는 이름, 나이/입력칸 두개. 입력완료 버튼.을 누르면 없는
+    //사용자면 alert("없습니다.")
+
+    @GetMapping("/login")
+    public String nowlogin() {
+        if (result.equals("ID errer")) {
+            return "존재하지 않는 아이디입니다.";
+        }
+        return null;
+    }
+
+
+
+
+
+
+
+}
 
 
     //Api 규격 맞추기
@@ -24,30 +49,6 @@ public class LoginController {
 
 
 
-import com.example.Mvctest.User;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
 
-import java.util.logging.Logger;
 
-@RestController
-@RequestMapping(value = "/login", method = {RequestMethod.GET, RequestMethod.POST})
-public class LoginController {
 
-    @PostMapping(value = "/login", produces = "application/json")
-    public String login(@RequestBody User user, Model model) {
-        System.out.println("user" + user);
-        User user1 = new User("jinwoo", "29");
-        User user2 = new User("jinhye", "25");
-        System.out.println(user.getName());
-        if(user.getName().equals(user1.getName()) || user.getName().equals(user2.getName())){
-            model.addAttribute("name", user.getName());
-        }
-        else{
-            model.addAttribute("name", "unknown");
-        }
-        return "200";
-    }
-}

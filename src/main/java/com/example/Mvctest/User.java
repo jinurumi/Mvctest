@@ -1,3 +1,4 @@
+/*
 package com.example.Mvctest;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
@@ -18,3 +19,4 @@ public class User {
         this.age = age;
     }
 }
+*/
