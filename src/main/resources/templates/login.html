@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <!--<script src="./login.js"></script>-->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="login.css">
+    <meta id="_csrf" name="_csrf" content="${_csrf.token}" />
+    <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}" />
+</head>
+<body>
+  <main>
+      <form name="loginForm" id="loginForm">
+          <div>
+              <span>이름</span>
+              <input type="text" id="name"></br>
+              <span>나이</span>
+              <input type="text" id="age"></br>
+
+          </div>
+      </form>
+      <button id='loginBtn' type="button" value="login">log in</button>
+  </main>
+<script>
+    let frm = document.getElementById('loginForm');
+    let btn = document.getElementById('loginBtn');
+$(function () {
+    var token = $("input[name='_csrf']").val();
+    var header = "X-CSRF-TOKEN";
+    $(document).ajaxSend(function(e, xhr, options) {
+        xhr.setRequestHeader(header, token);
+    });
+});
+    btn.onclick = function () {
+        let name = frm.name.value;
+        let age = frm.age.value;
+        let data = {"name": name, "age": age};
+        console.log(data);
+        $.ajax({
+            type: "POST",
+            url: "/login",
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            beforeSend : function(xhr){
+                xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+               },
+            success: function (response) {
+                console.log(response);
+                if (response.result === 'success') {
+                    alert('로그인 성공');
+                    location.href = '/index';
+                } else {
+                    alert('로그인 실패');
+                }
+            },
+            error: function (request, status, error) {
+                console.log("code: " + request.status);
+                console.log("message: " + request.responseText);
+                console.log("error: " + error);
+            }
+        });
+    }
+
+</script>
+</body>
+</html>
