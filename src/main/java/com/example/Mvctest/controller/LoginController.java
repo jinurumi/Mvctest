@@ -30,16 +30,19 @@ public class LoginController {
         return null;
     }
 
+    //로그인 성공하면 이름띄우기
+    @GetMapping("/login")
+    public String loginView() {
+        if (result.equals("success")) {
+            return uid;
+        }
 
-
+    }
 
 
 
 
 }
-
-
-    //Api 규격 맞추기
 
 
 

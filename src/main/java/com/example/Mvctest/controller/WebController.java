@@ -36,6 +36,13 @@ public class WebController {
         }
     }
 
+    //로그인페이지요청
+    @RequestMapping("http://localhost:8877/login")
+    public String nowlogin(){
+        return "/login";
+    }
+
+
 
 
 
